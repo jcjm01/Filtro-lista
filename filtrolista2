@@ -1,0 +1,13 @@
+#!/bin/bash
+#prueba con comodines para leer cualquier lista
+read -p "Dé el nombre de la lista: " n1
+if  [[ $n1 = *squeue* ]]; then
+for USER  in $(awk '{print $4}' $n1 | sort -u); 
+do grep $USER $n1 | wc -l ;
+grep $USER $n1 | grep RUN | cut -c38-55 |  nl | tail -n1  &&
+grep $USER $n1 | grep PEN | cut -c38-55 |  nl | tail -n1 
+echo "Total de experimentos: " 
+done;
+fi
+ 
+ 

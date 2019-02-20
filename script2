@@ -1,0 +1,5 @@
+#!/bin/bash
+
+for USER in $(awk '{print $4}' *squeue* | sort -u); do grep 
+$USER *squeue* | wc -l ; grep $USER *squeue* | grep RUN | cut -c40-55 |  nl | tail -n1 && grep $USER *squeue* | grep PEN | cut -c40-55 |  nl | tail -n1 ; echo "Total de experimentos: " ;done; 
+

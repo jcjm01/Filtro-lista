@@ -1,0 +1,9 @@
+#!/bin/bash
+#script para sacar porcentaje
+read -p "Introduzca la cantidad total: " n1
+read -p "Introduzca el porcentaje que desea saber: " n2
+echo "El $n2% de $n1 es: "
+echo  " $n1*($n2*0.01) " | bc
+
+
+

@@ -1,0 +1,5 @@
+#!/bin/bash
+function mensaje {
+echo "hola, soy $1 $2"
+}
+mensaje Juan Garcia

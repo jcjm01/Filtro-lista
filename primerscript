@@ -1,0 +1,29 @@
+#!/bin/bash 
+#Prueba con funciones para filtro de texto
+function buscar-RUN(){
+USER=$1
+for USER in $(awk '{print $1}' SALIDA-squeue | sort -u); do
+ grep $USER SALIDA-squeue | wc -l ; grep $USER SALIDA-squeue | grep RUN | cut -c6-7,40-55 |  nl | tail -n1
+
+
+}  
+
+
+
+function buscar-PEN(){
+USER=$1
+
+ for USER in $(awk '{print $1}' SALIDA-squeue | sort -u); do
+ grep $USER SALIDA-squeue | wc -l ; grep $USER SALIDA-squeue | grep PEN | cut -c6-7,40-55 |  nl | tail -n1
+
+} 
+
+for USER in $(cat SALIDA-squeue) ; do 
+
+echo "Mostrando trabajos de $USER RUNNING"
+buscar-RUN $USER 
+
+echo "Mostrando trabajos de $USER PENDING"
+buscar-PEN $USER 
+
+done

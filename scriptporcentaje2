@@ -1,0 +1,6 @@
+#!/bin/bash
+#segundo script para sacar porcentaje
+read -p "Introduzca la cantidad mas grande: " n1
+read -p "Introduzca el porcentaje que desea saber: " n2
+echo "El $n2% de $n1 es: "
+echo  "  scale=3; ($n2/$n1)*100 " | bc

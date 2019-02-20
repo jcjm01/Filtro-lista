@@ -1,0 +1,31 @@
+#!/bin/bash
+#lee cualquier lista que comience con squeue y entrega el porcentaje de experimentos.
+read -p "Dé el nombre de la lista: " n1
+if  [[ $n1 = *squeue* ]]; then 
+for USER  in $(awk '{print $4}' $n1 | sort -u); 
+do grep $USER $n1 | wc -l ; n2=$( grep $USER $n1 | wc -l) 
+grep $USER $n1 | grep RUN | cut -c38-55 |  nl | tail -n1;   
+n3=$( grep $USER $n1 | grep RUN | cut -c1 |  nl | tail -n1); 
+ if [[ -n $n3 ]]; then
+echo "El porcentaje de experimentos corriendo es: "
+echo " scale=3; (($n3/$n2))*100" | bc
+else 
+echo "No hay experimentos corriendo";  fi && grep $USER $n1 | grep PEN | cut -c38-55 |  nl | tail -n1 
+n4=$( grep $USER $n1 | grep PEN | cut -c1 |  nl | tail -n1) ;
+if [[ -n $n4 ]]; then
+echo "El porcentaje de experimentos pendientes es: "
+echo " scale=3;(($n4/$n2))*100" | bc 
+else
+echo "No hay experimentos pendientes"; 
+fi
+echo "==================================================="
+echo "TOTAL DE EXPERIMENTOS:   " 
+done;
+fi
+
+echo "$por"
+
+
+
+
+
