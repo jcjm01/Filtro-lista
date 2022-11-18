@@ -1,0 +1,1 @@
+head   haproxy.log | awk '{print $6}' | cut -c 1-13 | uniq -c
